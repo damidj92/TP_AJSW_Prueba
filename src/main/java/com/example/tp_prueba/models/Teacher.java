@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name = "Teacher")
 @Table(name = "\"Teachers\"", schema = "public")
@@ -25,4 +26,9 @@ public class Teacher extends Person implements Serializable {
     @Getter
     @Setter
     private Double salary;
+
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @Getter
+    @Setter
+    private List<Course> courses;
 }
